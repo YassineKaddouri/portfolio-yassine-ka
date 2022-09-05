@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}yassine{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
+            <link href=https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+            <link href="./css/aos.css" rel="stylesheet">
+            <link href="./css/bootstrap.min.css" rel="stylesheet">
+            <link href="./styles/main.css" rel="stylesheet">
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+
+            <script src="./js/core/jquery.3.2.1.min.js"></script>
+            <script src="./js/core/popper.min.js"></script>
+            <script src="./js/core/bootstrap.min.js"></script>
+            <script src="./js/now-ui-kit.js?v=1.1.0"></script>
+            <script src="./js/aos.js"></script>
+            <script src="scripts/main.js"></script>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>
