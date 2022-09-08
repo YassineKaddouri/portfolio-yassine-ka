@@ -5,9 +5,17 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="L email que vous avez indique est deja utilise!"
+ * )
  */
 class User implements UserInterface , \Serializable
 {
@@ -20,6 +28,7 @@ class User implements UserInterface , \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
@@ -30,11 +39,20 @@ class User implements UserInterface , \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="6",minMessage="votre password doit faire minimum 6 caracteres")
+     * @Assert\EqualTo(propertyPath="confirm_password",
+    message="vous n'avez pas tape le meme password")
      */
     private $password;
-
+    /**
+     * @Assert\EqualTo(propertyPath="password",
+    message="vous n'avez pas tape le meme password")
+     */
     public $confirm_password;
-
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     public function getId(): ?int
     {
@@ -85,7 +103,11 @@ class User implements UserInterface , \Serializable
     }
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
 
     }
     public function eraseCredentials()

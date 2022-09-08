@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -41,18 +42,29 @@ class SecurityController extends AbstractController
      * @Route("/Connexion", name="security_login")
      */
 
-    public function login(AuthenticationUtils $authentication)
+    public function login(AuthenticationUtils $authentication )
     {
         return $this->render('security/Login.html.twig',[
-
+            'hasError'=>$authentication->getLastUsername(),
+            'error'=> $authentication->getLastAuthenticationError()
 
         ]);
-
+//        $error =$utils->getLastAuthenticationError();
+//        $username =$utils->getLastUsername();
+//        return $this->render('security/Login.html.twig',[
+//            'hasError'=> $error !==null,
+//            'username' => $username
+//        ]);
     }
+
+
     /**
      * @Route("/logout", name="security_logout")
      */
-    public function logout(){
+    public function logout(FlashBagInterface $FlashMessage){
+//        $this->addFlash("success", "Email Envoyé avec succès");
+//        return $this->render('security/Login.html.twig');
+
 
     }
 }

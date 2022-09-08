@@ -5,26 +5,31 @@
   {% endblock %}
 
 {% block body %}
+    <style>
+        body{
+            background-image:url("uploads/images/lo.jpg");
+            background-position: center center;
+            background-size: cover;
+            /*width: 100%;*/
+        }
+
+    </style>
     <div class="container-fluid col-sm-8" >
 
-        <img src="{{asset ('Theme/img/logopng.png') }}" style="width: 20%">
 
-        <span style="margin-left: 15%"> المركز الجهوي لمهن التربية والتكوين</span>
-
-        <p style="margin-left: 30%;line-height: 10%">
-            CENTRE l'ÈDUCATION ET DE LA FORMATION</p>
-        <hr>
     </div>
-    <div class="container p-3 my-2 border col-lg-5">
+    <div class="container p-3 my-2 border  col-lg-5">
         <form method="post"  autocomplete="off">
             <h1><p class="font-italic" style="text-align: center">Inscription sur site</p></h1>
+            <hr class="bg-dark">
             {{ form_start(form) }}
             {{ form_row(form.email ,{'attr':{'placeholder':'email'}})  }}
             {{ form_row(form.username, {'label':'Nom d\'utilisateur','attr':{'placeholder':'username'}}) }}
             {{ form_row(form.password ,{'attr':{'placeholder':'password'}}) }}
             {{ form_row(form.confirm_password ,{'attr':{'placeholder':'Repeter votre password'}}) }}
-
-            <button type="submit" class="btn btn-success">Inscription</button>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success ">Inscription</button>
+            </div>
             {{ form_end(form) }}
 
         </form>

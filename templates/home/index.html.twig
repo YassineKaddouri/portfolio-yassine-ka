@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block body %}
+
     <header>
         <div class="profile-page sidebar-collapse">
             <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary" color-on-scroll="400">
@@ -19,7 +20,7 @@
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#about">À PROPOS DE MOI</a></li>
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#skill">Compétences</a></li>
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Livres</a></li>
+{#                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Livres</a></li>#}
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="{{path('app_contact')}}">Contact</a></li>
                         </ul>
                         <ul class="navbar-nav">
@@ -27,14 +28,21 @@
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="{{ path('security_login') }}">
                                     <i class="fa-solid fa-user-large"></i>Connexion</a></li>
                             {% else %}
+
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="{{ path('security_logout') }}">
                                     <i class="fa-solid fa-user-large"></i>Dconnexion</a></li>
+
+                                <li class="nav-item"><a class="nav-link smooth-scroll" href="">
+                                        <span style="color: #1da1f2"> Bienvenue :</span> {{  app.user.username }}</a></li>
+
+                         {% endif %}
+                            {% if is_granted("ROLE_ADMIN") %}
                                 <li class="nav-item"><a class="nav-link smooth-scroll" href="{{ path('add') }}">
                                         <i class="fa-solid fa-user-large"></i>AddPerson</a></li>
 
                                 <li class="nav-item"><a class="nav-link smooth-scroll" href="{{ path('list_education') }}">
                                         <i class="fa-solid fa-user-large"></i>ListPerson</a></li>
-                             {% endif %}
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -54,17 +62,11 @@
                                 <div class="cc-profile-image"><a href="#"><img src="{{asset('uploads/images/'~person.image)}}" alt="Image"/></a></div>
                                 <div class="h2 title">{{person.nom}} {{ person.prenom }}</div>
                                 <p class="category text-white">{{ person.titre }}</p>
-                                <a class="btn btn-primary" href="#demo" data-aos="zoom-in" data-aos-anchor="data-aos-anchor" data-toggle="collapse">Download CV</a>
-
-                                <div id="demo" class="collapse">
-                                    <form autocomplete="off">
-                                        <label for="inputEmail">Email</label>
-                                        <input type="text" class="form-control"  required name="_username" placeholder="">
-                                        <label for="inputPassword">Mot de passe</label>
-                                        <input type="text" class="form-control "  required name="_username" placeholder="">
-                                        <button type="submit" class="btn btn-primary" >Connexion</button>
-                                    </form>
-                                </div>
+                                {% if not app.user %}
+                                <a class="btn btn-primary" href="{{ path('security_inscription') }}" >Download CV</a>
+                                {% else %}
+                                <a class="btn btn-primary" href='uploads/images/CV.yassine_2022.pdf' >Download CV</a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="section">
@@ -72,7 +74,7 @@
                                 <div class="button-container">
                                     <a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Facebook"><i class="fa fa-facebook"></i></a>
                                     <a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Instagram"><i class="fa fa-instagram"></i></a>
-                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on linkedin"><i class="fa fa-linkedin"></i></a>
+                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/yassine-kaddouri-646b3112b/" rel="tooltip" title="Follow me on linkedin"><i class="fa fa-linkedin"></i></a>
 
                                 </div>
                             </div>
@@ -113,14 +115,14 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="progress-container progress-primary"><span class="progress-badge">HTML</span>
+                                    <div class="progress-container progress-primary"><span class="progress-badge">HTML5</span>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div><span class="progress-value">80%</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="progress-container progress-primary"><span class="progress-badge">CSS</span>
+                                    <div class="progress-container progress-primary"><span class="progress-badge">CSS3</span>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div><span class="progress-value">75%</span>
                                         </div>
@@ -129,14 +131,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="progress-container progress-primary"><span class="progress-badge">JavaScript</span>
+                                    <div class="progress-container progress-primary"><span class="progress-badge">PHP</span>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div><span class="progress-value">60%</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="progress-container progress-primary"><span class="progress-badge">SASS</span>
+                                    <div class="progress-container progress-primary"><span class="progress-badge">Symfony</span>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div><span class="progress-value">60%</span>
                                         </div>
@@ -152,7 +154,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="progress-container progress-primary"><span class="progress-badge">Photoshop</span>
+                                    <div class="progress-container progress-primary"><span class="progress-badge">Laravel</span>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div><span class="progress-value">70%</span>
                                         </div>
@@ -183,14 +185,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                                                <figure class="cc-effect"><img src="/images/project-1.jpg" alt="Image"/>
+                                                <figure class="cc-effect"><img  src="{{asset ('uploads/images/IURC full.png') }}"  alt="Image"/>
                                                     <figcaption>
-                                                        <div class="h4">Recent Project</div>
-                                                        <p>Web Development</p>
+                                                        <div class="h4">Projet Récent</div>
+                                                        <p>Application Web</p>
                                                     </figcaption>
                                                 </figure></a></div>
                                         <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                                                <figure class="cc-effect"><img src="/images/project-2.jpg" alt="Image"/>
+                                                <figure class="cc-effect"><img src="{{asset ('uploads/images/CodingBiblio.png') }}" alt="Image"/>
                                                     <figcaption>
                                                         <div class="h4">Startup Project</div>
                                                         <p>Web Development</p>
@@ -199,14 +201,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                                                <figure class="cc-effect"><img src="/images/project-3.jpg" alt="Image"/>
+                                                <figure class="cc-effect"><img src="{{asset ('uploads/images/CodingBiblio.png') }}" alt="Image"/>
                                                     <figcaption>
                                                         <div class="h4">Food Order Project</div>
                                                         <p>Web Development</p>
                                                     </figcaption>
                                                 </figure></a></div>
                                         <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#web-development">
-                                                <figure class="cc-effect"><img src="/images/project-4.jpg" alt="Image"/>
+                                                <figure class="cc-effect"><img src="{{asset ('uploads/images/CodingBiblio.png') }}" alt="Image"/>
                                                     <figcaption>
                                                         <div class="h4">Web Advertising Project</div>
                                                         <p>Web Development</p>
@@ -221,14 +223,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                                                <figure class="cc-effect"><img  src="{{asset ('uploads/images/image1.jpeg') }}" alt="Image"/>
+                                                <figure class="cc-effect"><img  src="{{asset ('uploads/images/image3.jpeg') }}" alt="Image"/>
                                                     <figcaption>
                                                         <div class="h4">Triangle Pattern</div>
                                                         <p>Graphic Design</p>
                                                     </figcaption>
                                                 </figure></a></div>
                                         <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                                                <figure class="cc-effect"><img  src="{{asset ('uploads/images/image2.jpeg') }}" alt="Image"/>
+                                                <figure class="cc-effect"><img  src="{{asset ('uploads/images/image1.jpeg') }}" alt="Image"/>
                                                     <figcaption>
                                                         <div class="h4">Abstract Umbrella</div>
                                                         <p>Graphic Design</p>
@@ -237,7 +239,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom"><a href="#graphic-design">
-                                                <figure class="cc-effect"><img src="{{asset ('uploads/images/image3.jpeg') }}" alt="Image"/>
+                                                <figure class="cc-effect"><img src="{{asset ('uploads/images/image2.jpeg') }}" alt="Image"/>
                                                     <figcaption>
                                                         <div class="h4">Cube Surface Texture</div>
                                                         <p>Graphic Design</p>
@@ -295,60 +297,60 @@
                     </div>
                 </div>
             </div>
-            <div class="section" id="experience">
-                <div class="container cc-experience">
-                    <div class="h4 text-center mb-4 title">Work Experience</div>
-                    <div class="card-deck">
-                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+{#            <div class="section" id="experience">#}
+{#                <div class="container cc-experience">#}
+{#                    <div class="h4 text-center mb-4 title">Work Experience</div>#}
+{#                    <div class="card-deck">#}
+{#                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">#}
 
-                            <div class="card-header ">Header</div>
-                            <div class="card-body">Content</div>
-                            <div class="card-footer">Footer</div>
+{#                            <div class="card-header ">Header</div>#}
+{#                            <div class="card-body">Content</div>#}
+{#                            <div class="card-footer">Footer</div>#}
 
-                        </div>
-                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+{#                        </div>#}
+{#                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">#}
 
-                            <div class="card-header ">Header</div>
-                            <div class="card-body">Content</div>
-                            <div class="card-footer">Footer</div>
+{#                            <div class="card-header ">Header</div>#}
+{#                            <div class="card-body">Content</div>#}
+{#                            <div class="card-footer">Footer</div>#}
 
-                        </div>
-                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+{#                        </div>#}
+{#                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">#}
 
-                            <div class="card-header ">Header</div>
-                            <div class="card-body">Content</div>
-                            <div class="card-footer">Footer</div>
+{#                            <div class="card-header ">Header</div>#}
+{#                            <div class="card-body">Content</div>#}
+{#                            <div class="card-footer">Footer</div>#}
 
-                        </div>
-                    </div>
-                    <div class="card-deck">
-                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="card-deck">#}
+{#                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">#}
 
-                            <div class="card-header ">Header</div>
-                            <div class="card-body">Content</div>
-                            <div class="card-footer">Footer</div>
+{#                            <div class="card-header ">Header</div>#}
+{#                            <div class="card-body">Content</div>#}
+{#                            <div class="card-footer">Footer</div>#}
 
-                        </div>
-                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+{#                        </div>#}
+{#                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">#}
 
-                            <div class="card-header ">Header</div>
-                            <div class="card-body">Content</div>
-                            <div class="card-footer">Footer</div>
+{#                            <div class="card-header ">Header</div>#}
+{#                            <div class="card-body">Content</div>#}
+{#                            <div class="card-footer">Footer</div>#}
 
-                        </div>
-                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+{#                        </div>#}
+{#                        <div class="card" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">#}
 
-                            <div class="card-header ">Header</div>
-                            <div class="card-body">Content</div>
-                            <div class="card-footer">Footer</div>
+{#                            <div class="card-header ">Header</div>#}
+{#                            <div class="card-body">Content</div>#}
+{#                            <div class="card-footer">Footer</div>#}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
 
-        </div>
-    </div>
+{#        </div>#}
+{#    </div>#}
     <div class="section">
         <div class="container cc-education">
             <div class="h4 text-center mb-4 title">Education</div>
@@ -357,17 +359,20 @@
                 <div class="row">
                     <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
                         <div class="card-body cc-education-header">
-{#                            {% for education in educations %}#}
+{#                            {% for person in persons %}#}
 
 {#                            <p>{{ education.dateDebut|date("d/m/y")}} {{ education.dateFin|date("d/m/y")}}</p>#}
-{#                            <div class="h5">{{ education.ecole }}</div>#}
+{#                            <div class="h5">{{ person.education }}</div>#}
 {#                            {% endfor %}#}
                         </div>
                     </div>
                     <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
                         <div class="card-body">
-{#                            <div class="h5">{{ education.filier }}</div>#}
-{#                            <p class="category">{{ education.description }}</p>#}
+                            {% for person in persons %}
+
+{#                            <p>{{ education.dateDebut|date("d/m/y")}} {{ education.dateFin|date("d/m/y")}}</p>#}
+                            <div class="h5">-{{ person.education }}</div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
