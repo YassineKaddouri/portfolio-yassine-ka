@@ -63,7 +63,7 @@
                                 <div class="h2 title">{{person.nom}} {{ person.prenom }}</div>
                                 <p class="category text-white">{{ person.titre }}</p>
                                 {% if not app.user %}
-                                <a class="btn btn-primary" href="{{ path('security_inscription') }}" >Download CV</a>
+                                <a class="btn btn-primary" href="{{ path('security_login') }}" >Download CV</a>
                                 {% else %}
                                 <a class="btn btn-primary" href='uploads/images/CV.yassine_2022.pdf' >Download CV</a>
                                 {% endif %}
@@ -72,8 +72,8 @@
                         <div class="section">
                             <div class="container">
                                 <div class="button-container">
-                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Facebook"><i class="fa fa-facebook"></i></a>
-                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="#" rel="tooltip" title="Follow me on Instagram"><i class="fa fa-instagram"></i></a>
+                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.instagram.com/yssine_kad/" rel="tooltip" title="Follow me on Facebook"><i class="fa fa-facebook"></i></a>
+                                    <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.instagram.com/yssine_kad/" rel="tooltip" title="Follow me on Instagram"><i class="fa fa-instagram"></i></a>
                                     <a class="btn btn-default btn-round btn-lg btn-icon" href="https://www.linkedin.com/in/yassine-kaddouri-646b3112b/" rel="tooltip" title="Follow me on linkedin"><i class="fa fa-linkedin"></i></a>
 
                                 </div>
@@ -82,6 +82,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="section" id="about">
                 <div class="container">
                     <div class="card" data-aos="fade-up" data-aos-offset="10">

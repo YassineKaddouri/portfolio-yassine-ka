@@ -6,7 +6,10 @@
 
 parameters:
     images_directory: '%kernel.project_dir%/public/uploads/images'
-
+    app.contact.email: 'yassinebts93@gmail.com'
+    app.contact.subject: 'contact form | message'
+    app.contact.address: '122 oujda yassine'
+    app.contact.phone: '****123'
 services:
     # default configuration for services in *this* file
     _defaults:

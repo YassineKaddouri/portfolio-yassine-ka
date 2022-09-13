@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
@@ -15,15 +18,30 @@ class ContactController extends AbstractController
          * @Route("/contact", name="app_contact")
         */
 
-    public function index(Request $request): Response
+    public function index(Request $request,ManagerRegistry $managerRegistry,MailerInterface $mailer): Response
     {
         $contact = new Contact();
         $form=$this->createForm(ContactType::class,$contact);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $managerRegistry->getManager();
+            $em->persist($contact);
+            $em->flush();
+
+            $email = new Email();
+            $email->from($contact->getEmail());
+            $email->to($this->getParameter('app.contact.email'));
+            $email->replyTo($this->getParameter('app.contact.email'));
+            $email->subject($this->getParameter('app.contact.subject'));
+            $email->html($contact->getMessage());
+            $mailer->send($email);
+            $this->addFlash('success','Votre message a bien été envoyé merci ☺️ ');
+        }
         return $this->render('contact/index.html.twig', [
-            'contact_address' =>$this->getParameter('app.contact.address'),
-            'contact_phone' =>$this->getParameter('app.contact.phone'),
-            'contact_email' =>$this->getParameter('app.contact.email'),
+//            'contact_address' =>$this->getParameter('app.contact.address'),
+//            'contact_phone' =>$this->getParameter('app.contact.phone'),
+//            'contact_email' =>$this->getParameter('app.contact.email'),
             'form'=>$form->createView()
 
         ]);
