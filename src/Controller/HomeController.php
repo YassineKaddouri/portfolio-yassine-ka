@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Education;
 use App\Entity\Person;
 
 use App\Form\AddEducationType;
