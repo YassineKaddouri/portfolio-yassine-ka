@@ -126,7 +126,7 @@ class User implements UserInterface , \Serializable
         ));
     }
 
-    /** @see \Serializable::unserialize() */
+//    /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
         list (
