@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -17,7 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     message="L email que vous avez indique est deja utilise!"
  * )
  */
-class User implements UserInterface , \Serializable
+class User implements UserInterface , Serializable
 {
     /**
      * @ORM\Id
@@ -126,7 +127,7 @@ class User implements UserInterface , \Serializable
         ));
     }
 
-//    /** @see \Serializable::unserialize() */
+   /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
         list (
