@@ -114,31 +114,31 @@ class User implements UserInterface , \Serializable
     {
         return null;
     }
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-
-            // see section on salt below
-            // $this->salt,
-        ));
-    }
-
-//    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-
-
-            // see section on salt below
-            // $this->salt
-            ) = unserialize($serialized);
-    }
+//    public function serialize()
+//    {
+//        return serialize(array(
+//            $this->id,
+//            $this->username,
+//            $this->password,
+//
+//            // see section on salt below
+//            // $this->salt,
+//        ));
+//    }
+//
+////    /** @see \Serializable::unserialize() */
+//    public function unserialize($serialized)
+//    {
+//        list (
+//            $this->id,
+//            $this->username,
+//            $this->password,
+//
+//
+//            // see section on salt below
+//            // $this->salt
+//            ) = unserialize($serialized);
+//    }
 
     public function setRoles(array $roles): self
     {
