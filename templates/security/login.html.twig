@@ -11,7 +11,7 @@
 {% endfor %}
 <style>
 body{
-background-image:url("uploads/images/lo.jpg");
+background-image:url("images/lo.jpg");
     background-position: center center;
     background-size: cover;
     /*width: 100%;*/
@@ -74,7 +74,7 @@ background-image:url("uploads/images/lo.jpg");
         </div>
 
 
-{% endblock %}
+
 
             {% block javascripts %}
 <script src="{{ asset('https://code.jquery.com/jquery-3.5.1.slim.min.js') }}"
@@ -86,4 +86,5 @@ crossorigin="anonymous"></script>
 <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js') }}"
 integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
  <script src={{ asset('https://kit.fontawesome.com/a076d05399.js') }}></script>
+{% endblock %}
 {% endblock %}
