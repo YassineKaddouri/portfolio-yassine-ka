@@ -33,10 +33,10 @@
         <td>{{person.prenom}}</td>
         <td>{{person.email }}</td>
         <td>{{ person.description }}</td>
-        <td><img src="{{asset('uploads/images/'~person.image)}}" style="vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;"></td>
+{#        <td><img src="{{asset('uploads/images/'~person.image)}}" style="vertical-align: middle;#}
+{#  width: 50px;#}
+{#  height: 50px;#}
+{#  border-radius: 50%;"></td>#}
         <td><a href="{{ path('delete_show',{'id':person.id})}}" class="btn btn-primary">Delete</a>
             <a href="{{ path('person_edit',{'id':person.id})}}" class="btn btn-warning">Modifier</a>
         </td>

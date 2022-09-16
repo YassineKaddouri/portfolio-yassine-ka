@@ -21,9 +21,9 @@ class AddPersonType extends AbstractType
             ->add('email')
             ->add('description')
             ->add('education')
-            ->add('image',FileType::class,['label'=>'image',
-                'mapped' => false,
-                'required'=>false])
+//            ->add('image',FileType::class,['label'=>'image',
+//                'mapped' => false,
+//                'required'=>false])
 
         ;
     }

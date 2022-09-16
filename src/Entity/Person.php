@@ -44,10 +44,10 @@ class Person
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
+//    /**
+//     * @ORM\Column(type="string", length=255)
+//     */
+//    private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -120,17 +120,17 @@ class Person
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
+//    public function getImage(): ?string
+//    {
+//        return $this->image;
+//    }
+//
+//    public function setImage(string $image): self
+//    {
+//        $this->image = $image;
+//
+//        return $this;
+//    }
 
     public function getEducation(): ?string
     {
