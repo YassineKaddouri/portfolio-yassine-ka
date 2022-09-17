@@ -57,15 +57,16 @@
                     <div class="page-header page-header-small" filter-color="green">
                         <div class="page-header-image" data-parallax="true" style="background-image: url('/images/ok.jpg');"></div>
                         <div class="container">
-                            {% for  person in persons %}
+
                             <div class="content-center">
+                                {% for  person in persons %}
 {#                                <div class="cc-profile-image"><a href="#"><img src="{{asset('uploads/images/'~person.image)}}" alt="Image"/></a></div>#}
                                 <div class="h2 title">{{person.nom}} {{ person.prenom }}</div>
-                                <p class="category text-white">{{ person.titre }}</p>
-                                {% if not app.user %}
-                                <a class="btn btn-primary" href="{{ path('security_login') }}" >Download CV</a>
-                                {% else %}
-                                <a class="btn btn-primary" href='images/CV.yassine_2022.pdf' >Download CV</a>
+{#                                <p class="category text-white">{{ person.titre }}</p>#}
+{#                                {% if not app.user %}#}
+{#                                <a class="btn btn-primary" href="{{ path('security_login') }}" >Download CV</a>#}
+{#                                {% else %}#}
+{#                                <a class="btn btn-primary" href='images/CV.yassine_2022.pdf' >Download CV</a>#}
                                 {% endif %}
                             </div>
                         </div>
