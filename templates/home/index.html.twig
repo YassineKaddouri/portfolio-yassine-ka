@@ -59,9 +59,12 @@
                         <div class="container">
 
                             <div class="content-center">
-                                {% for  person in persons %}
+{#                                {% for  person in persons %}#}
 {#                                <div class="cc-profile-image"><a href="#"><img src="{{asset('uploads/images/'~person.image)}}" alt="Image"/></a></div>#}
-                                <div class="h2 title">{{person.nom}} {{ person.prenom }}</div>
+                                 <div class="cc-profile-image"><a href="#"><img src="{{asset ('uploads/images/imgyassine.jpg') }}" alt="Image"/></a></div>
+
+{#                                <div class="h2 title">{{person.nom}} {{ person.prenom }}</div>#}
+                                <div class="h2 title"> KADDOURI YASSINE</div>#}
 {#                                <p class="category text-white">{{ person.titre }}</p>#}
 {#                                {% if not app.user %}#}
 {#                                <a class="btn btn-primary" href="{{ path('security_login') }}" >Download CV</a>#}
@@ -105,7 +108,7 @@
                                         <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
                                         <div class="col-sm-8">{{person.email}}</div>
                                     </div>
-                                    {% endfor %}
+{#                                    {% endfor %}#}
                                 </div>
                             </div>
                         </div>
