@@ -6879,6 +6879,13 @@ Created using IcoMoon - icomoon.io
             transform: translateY(-50%);
   }
 }
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+}
 
 /* Images Gallery Style*/
 .gallery .cc-porfolio-image figure {
